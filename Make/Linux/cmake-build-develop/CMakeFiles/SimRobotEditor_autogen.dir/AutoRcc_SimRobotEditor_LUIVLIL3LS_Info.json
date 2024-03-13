@@ -1,0 +1,23 @@
+{
+	"BUILD_DIR" : "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop/SimRobotEditor_autogen",
+	"CMAKE_BINARY_DIR" : "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/jose/Documents/SabanaHerons2024/Make/Linux",
+	"CMAKE_SOURCE_DIR" : "/home/jose/Documents/SabanaHerons2024/Make/Linux",
+	"INCLUDE_DIR" : "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop/SimRobotEditor_autogen/include",
+	"INPUTS" : 
+	[
+		"/home/jose/Documents/SabanaHerons2024/Util/SimRobot/Src/SimRobotEditor/Icons/icons8-documents-50.png",
+		"/home/jose/Documents/SabanaHerons2024/Util/SimRobot/Src/SimRobotEditor/Icons/icons8-document-50.png"
+	],
+	"LOCK_FILE" : "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop/CMakeFiles/SimRobotEditor_autogen.dir/AutoRcc_SimRobotEditor_LUIVLIL3LS_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "SimRobotEditor" ],
+	"OUTPUT_CHECKSUM" : "LUIVLIL3LS",
+	"OUTPUT_NAME" : "qrc_SimRobotEditor.cpp",
+	"RCC_EXECUTABLE" : "/usr/lib/qt6/libexec/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop/CMakeFiles/SimRobotEditor_autogen.dir/AutoRcc_SimRobotEditor_LUIVLIL3LS_Used.txt",
+	"SOURCE" : "/home/jose/Documents/SabanaHerons2024/Util/SimRobot/Src/SimRobotEditor/SimRobotEditor.qrc",
+	"VERBOSITY" : 0
+}

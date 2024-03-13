@@ -1,0 +1,37 @@
+{
+	"BUILD_DIR" : "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop/SimRobot_autogen",
+	"CMAKE_BINARY_DIR" : "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/jose/Documents/SabanaHerons2024/Make/Linux",
+	"CMAKE_SOURCE_DIR" : "/home/jose/Documents/SabanaHerons2024/Make/Linux",
+	"INCLUDE_DIR" : "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop/SimRobot_autogen/include",
+	"INPUTS" : 
+	[
+		"/home/jose/Documents/SabanaHerons2024/Util/SimRobot/Src/SimRobot/Icons/icons8-close-50.png",
+		"/home/jose/Documents/SabanaHerons2024/Util/SimRobot/Src/SimRobot/Icons/icons8-folder-50.png",
+		"/home/jose/Documents/SabanaHerons2024/Util/SimRobot/Src/SimRobot/Icons/icons8-save-50.png",
+		"/home/jose/Documents/SabanaHerons2024/Util/SimRobot/Src/SimRobot/Icons/icons8-close-dark-50.png",
+		"/home/jose/Documents/SabanaHerons2024/Util/SimRobot/Src/SimRobot/Icons/icons8-open-document-50.png",
+		"/home/jose/Documents/SabanaHerons2024/Util/SimRobot/Src/SimRobot/Icons/icons8-skip-to-start-50.png",
+		"/home/jose/Documents/SabanaHerons2024/Util/SimRobot/Src/SimRobot/Icons/SimRobot.png",
+		"/home/jose/Documents/SabanaHerons2024/Util/SimRobot/Src/SimRobot/Icons/icons8-undo-50.png",
+		"/home/jose/Documents/SabanaHerons2024/Util/SimRobot/Src/SimRobot/Icons/icons8-step-over-50.png",
+		"/home/jose/Documents/SabanaHerons2024/Util/SimRobot/Src/SimRobot/Icons/icons8-paste-50.png",
+		"/home/jose/Documents/SabanaHerons2024/Util/SimRobot/Src/SimRobot/Icons/icons8-redo-50.png",
+		"/home/jose/Documents/SabanaHerons2024/Util/SimRobot/Src/SimRobot/Icons/icons8-play-50.png",
+		"/home/jose/Documents/SabanaHerons2024/Util/SimRobot/Src/SimRobot/Icons/icons8-copy-to-clipboard-50.png",
+		"/home/jose/Documents/SabanaHerons2024/Util/SimRobot/Src/SimRobot/Icons/icons8-text-input-form-50.png",
+		"/home/jose/Documents/SabanaHerons2024/Util/SimRobot/Src/SimRobot/Icons/icons8-cut-50.png",
+		"/home/jose/Documents/SabanaHerons2024/Util/SimRobot/Src/SimRobot/Icons/icons8-stacked-organizational-chart-50.png"
+	],
+	"LOCK_FILE" : "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop/CMakeFiles/SimRobot_autogen.dir/AutoRcc_SimRobot_7RYCPZ667X_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "SimRobot" ],
+	"OUTPUT_CHECKSUM" : "7RYCPZ667X",
+	"OUTPUT_NAME" : "qrc_SimRobot.cpp",
+	"RCC_EXECUTABLE" : "/usr/lib/qt6/libexec/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop/CMakeFiles/SimRobot_autogen.dir/AutoRcc_SimRobot_7RYCPZ667X_Used.txt",
+	"SOURCE" : "/home/jose/Documents/SabanaHerons2024/Util/SimRobot/Src/SimRobot/SimRobot.qrc",
+	"VERBOSITY" : 0
+}

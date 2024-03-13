@@ -1,0 +1,128 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeDetermineSystem.cmake:206 (message)"
+      - "CMakeLists.txt:11 (project)"
+    message: |
+      The target system is: Linux -  - x86_64
+      The host system is: Linux - 6.3.0-060300-generic - x86_64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:11 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /usr/bin/clang++ 
+      Build flags: -nostdinc;-nostdinc++;-march=silvermont;-mtune=silvermont;-mrdrnd
+      Id flags: -c;--target=x86_64-linux-gnu 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.o"
+      
+      The CXX compiler identification is Clang, found in:
+        /home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop/Nao-prefix/src/Nao-build/CMakeFiles/3.27.8/CompilerIdCXX/CMakeCXXCompilerId.o
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:11 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop/Nao-prefix/src/Nao-build/CMakeFiles/CMakeScratch/TryCompile-h3vspl"
+      binary: "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop/Nao-prefix/src/Nao-build/CMakeFiles/CMakeScratch/TryCompile-h3vspl"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_TARGET: "x86_64-linux-gnu"
+      CMAKE_CXX_FLAGS: "-nostdinc -nostdinc++ -march=silvermont -mtune=silvermont -mrdrnd"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop/Nao-prefix/src/Nao-build/CMakeFiles/CMakeScratch/TryCompile-h3vspl'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_605ad
+        [1/2] /usr/bin/clang++ --target=x86_64-linux-gnu   -nostdinc -nostdinc++ -march=silvermont -mtune=silvermont -mrdrnd    -v -MD -MT CMakeFiles/cmTC_605ad.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_605ad.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_605ad.dir/CMakeCXXCompilerABI.cpp.o -c /snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeCXXCompilerABI.cpp
+        Ubuntu clang version 14.0.0-1ubuntu1.1
+        Target: x86_64-unknown-linux-gnu
+        Thread model: posix
+        InstalledDir: /usr/bin
+        Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/11
+        Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/12
+        Selected GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/12
+        Candidate multilib: .;@m64
+        Selected multilib: .;@m64
+         (in-process)
+         "/usr/lib/llvm-14/bin/clang" -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu silvermont -target-feature +rdrnd -tune-cpu silvermont -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop/Nao-prefix/src/Nao-build/CMakeFiles/CMakeScratch/TryCompile-h3vspl -nostdsysteminc -nobuiltininc -resource-dir /usr/lib/llvm-14/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_605ad.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_605ad.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -fdeprecated-macro -fdebug-compilation-dir=/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop/Nao-prefix/src/Nao-build/CMakeFiles/CMakeScratch/TryCompile-h3vspl -ferror-limit 19 -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_605ad.dir/CMakeCXXCompilerABI.cpp.o -x c++ /snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeCXXCompilerABI.cpp
+        clang -cc1 version 14.0.0 based upon LLVM 14.0.0 default target x86_64-pc-linux-gnu
+        #include "..." search starts here:
+        End of search list.
+        [2/2] : && ld.mold -v -nostdlib --hash-style=gnu --eh-frame-hdr -m elf_x86_64 -dynamic-linker=/lib64/ld-linux-x86-64.so.2 -o cmTC_605ad "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/crt1.o" "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/crti.o" "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/crtbegin.o" -L"/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib" CMakeFiles/cmTC_605ad.dir/CMakeCXXCompilerABI.cpp.o   "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib"/libstdc++.so.6.0.30 --start-group "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/libm.so.6" --as-needed "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/libmvec.so.1" --no-as-needed --end-group --start-group "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/libgcc_s.so.1" "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/libgcc.a" --end-group "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/libgcc.a" --start-group "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/libc.so.6" "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/libc_nonshared.a" --as-needed "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/ld-linux-x86-64.so.2" --no-as-needed --end-group --start-group "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/libgcc_s.so.1" "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/libgcc.a" --end-group "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/libgcc.a" "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/crtend.o" "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/crtn.o" && :
+        mold 1.0.3 (compatible with GNU ld)
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
+      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:11 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        end of search list found
+        implicit include dirs: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerABI.cmake:152 (message)"
+      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:11 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: '/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop/Nao-prefix/src/Nao-build/CMakeFiles/CMakeScratch/TryCompile-h3vspl']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/bin/ninja -v cmTC_605ad]
+        ignore line: [[1/2] /usr/bin/clang++ --target=x86_64-linux-gnu   -nostdinc -nostdinc++ -march=silvermont -mtune=silvermont -mrdrnd    -v -MD -MT CMakeFiles/cmTC_605ad.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_605ad.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_605ad.dir/CMakeCXXCompilerABI.cpp.o -c /snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Ubuntu clang version 14.0.0-1ubuntu1.1]
+        ignore line: [Target: x86_64-unknown-linux-gnu]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /usr/bin]
+        ignore line: [Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/11]
+        ignore line: [Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/12]
+        ignore line: [Selected GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/12]
+        ignore line: [Candidate multilib: .]
+        ignore line: [@m64]
+        ignore line: [Selected multilib: .]
+        ignore line: [@m64]
+        ignore line: [ (in-process)]
+        ignore line: [ "/usr/lib/llvm-14/bin/clang" -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu silvermont -target-feature +rdrnd -tune-cpu silvermont -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop/Nao-prefix/src/Nao-build/CMakeFiles/CMakeScratch/TryCompile-h3vspl -nostdsysteminc -nobuiltininc -resource-dir /usr/lib/llvm-14/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_605ad.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_605ad.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -fdeprecated-macro -fdebug-compilation-dir=/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop/Nao-prefix/src/Nao-build/CMakeFiles/CMakeScratch/TryCompile-h3vspl -ferror-limit 19 -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_605ad.dir/CMakeCXXCompilerABI.cpp.o -x c++ /snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [clang -cc1 version 14.0.0 based upon LLVM 14.0.0 default target x86_64-pc-linux-gnu]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [End of search list.]
+        ignore line: [[2/2] : && ld.mold -v -nostdlib --hash-style=gnu --eh-frame-hdr -m elf_x86_64 -dynamic-linker=/lib64/ld-linux-x86-64.so.2 -o cmTC_605ad "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/crt1.o" "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/crti.o" "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/crtbegin.o" -L"/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib" CMakeFiles/cmTC_605ad.dir/CMakeCXXCompilerABI.cpp.o   "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib"/libstdc++.so.6.0.30 --start-group "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/libm.so.6" --as-needed "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/libmvec.so.1" --no-as-needed --end-group --start-group "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/libgcc_s.so.1" "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/libgcc.a" --end-group "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/libgcc.a" --start-group "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/libc.so.6" "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/libc_nonshared.a" --as-needed "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/ld-linux-x86-64.so.2" --no-as-needed --end-group --start-group "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/libgcc_s.so.1" "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/libgcc.a" --end-group "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/libgcc.a" "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/crtend.o" "/home/jose/Documents/SabanaHerons2024/Make/CMake/../../Util/Buildchain/V6/lib/crtn.o" && :]
+        ignore line: [mold 1.0.3 (compatible with GNU ld)]
+        ignore line: []
+        ignore line: []
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+...
