@@ -4,19 +4,19 @@
 cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
-  "/home/jose/Documents/SabanaHerons2024/Make/Linux"
-  "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop/Nao-prefix/src/Nao-build"
-  "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop/Nao-prefix"
-  "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop/Nao-prefix/tmp"
-  "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop/Nao-prefix/src/Nao-stamp"
-  "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop/Nao-prefix/src"
-  "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop/Nao-prefix/src/Nao-stamp"
+  "/home/nao/SabanaHerons2024/Make/Linux"
+  "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-develop/Nao-prefix/src/Nao-build"
+  "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-develop/Nao-prefix"
+  "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-develop/Nao-prefix/tmp"
+  "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-develop/Nao-prefix/src/Nao-stamp"
+  "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-develop/Nao-prefix/src"
+  "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-develop/Nao-prefix/src/Nao-stamp"
 )
 
 set(configSubDirs Debug;Develop;Release)
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop/Nao-prefix/src/Nao-stamp/${subDir}")
+    file(MAKE_DIRECTORY "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-develop/Nao-prefix/src/Nao-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-develop/Nao-prefix/src/Nao-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-develop/Nao-prefix/src/Nao-stamp${cfgdir}") # cfgdir has leading slash
 endif()

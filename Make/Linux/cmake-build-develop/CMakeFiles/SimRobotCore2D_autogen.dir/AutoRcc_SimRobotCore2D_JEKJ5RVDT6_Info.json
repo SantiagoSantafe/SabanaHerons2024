@@ -1,0 +1,26 @@
+{
+	"BUILD_DIR" : "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-develop/SimRobotCore2D_autogen",
+	"CMAKE_BINARY_DIR" : "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-develop",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-develop",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/nao/SabanaHerons2024/Make/Linux",
+	"CMAKE_SOURCE_DIR" : "/home/nao/SabanaHerons2024/Make/Linux",
+	"GENERATOR" : "Ninja",
+	"INCLUDE_DIR" : "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-develop/SimRobotCore2D_autogen/include",
+	"INPUTS" : 
+	[
+		"/home/nao/SabanaHerons2024/Util/SimRobot/Src/SimRobotCore2D/Icons/icons8-coordinate-system-50.png",
+		"/home/nao/SabanaHerons2024/Util/SimRobot/Src/SimRobotCore2D/Icons/icons8-orthogonal-view-50.png",
+		"/home/nao/SabanaHerons2024/Util/SimRobot/Src/SimRobotCore2D/Icons/icons8-3d-model-50.png",
+		"/home/nao/SabanaHerons2024/Util/SimRobot/Src/SimRobotCore2D/Icons/icons8-camera-50.png"
+	],
+	"LOCK_FILE" : "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-develop/CMakeFiles/SimRobotCore2D_autogen.dir/AutoRcc_SimRobotCore2D_JEKJ5RVDT6_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "SimRobotCore2D" ],
+	"OUTPUT_CHECKSUM" : "JEKJ5RVDT6",
+	"OUTPUT_NAME" : "qrc_SimRobotCore2D.cpp",
+	"RCC_EXECUTABLE" : "/usr/lib/qt6/libexec/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-develop/CMakeFiles/SimRobotCore2D_autogen.dir/AutoRcc_SimRobotCore2D_JEKJ5RVDT6_Used.txt",
+	"SOURCE" : "/home/nao/SabanaHerons2024/Util/SimRobot/Src/SimRobotCore2D/SimRobotCore2D.qrc",
+	"VERBOSITY" : 0
+}

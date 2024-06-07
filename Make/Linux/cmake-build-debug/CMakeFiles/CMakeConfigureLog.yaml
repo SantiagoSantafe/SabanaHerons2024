@@ -4,16 +4,16 @@ events:
   -
     kind: "message-v1"
     backtrace:
-      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeDetermineSystem.cmake:211 (message)"
+      - "/snap/clion/277/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeDetermineSystem.cmake:233 (message)"
       - "CMakeLists.txt:11 (project)"
     message: |
-      The system is: Linux - 6.3.0-060300-generic - x86_64
+      The system is: Linux - 6.5.0-15-generic - x86_64
   -
     kind: "message-v1"
     backtrace:
-      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
-      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
-      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "/snap/clion/277/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/snap/clion/277/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/snap/clion/277/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
       - "CMakeLists.txt:11 (project)"
     message: |
       Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
@@ -28,20 +28,21 @@ events:
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
       
       The CXX compiler identification is Clang, found in:
-        /home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/3.27.8/CompilerIdCXX/a.out
+        /home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/3.28.1/CompilerIdCXX/a.out
       
   -
     kind: "try_compile-v1"
     backtrace:
-      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
-      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "/snap/clion/277/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/snap/clion/277/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
       - "CMakeLists.txt:11 (project)"
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-6A3XEH"
-      binary: "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-6A3XEH"
+      source: "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-lbap2S"
+      binary: "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-lbap2S"
     cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS-NOTFOUND"
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: "-g"
       CMAKE_EXE_LINKER_FLAGS: ""
@@ -49,10 +50,10 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-6A3XEH'
+        Change Dir: '/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-lbap2S'
         
-        Run Build Command(s): /snap/clion/265/bin/ninja/linux/x64/ninja -v cmTC_83503
-        [1/2] /usr/bin/clang++   -fcolor-diagnostics   -v -MD -MT CMakeFiles/cmTC_83503.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_83503.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_83503.dir/CMakeCXXCompilerABI.cpp.o -c /snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeCXXCompilerABI.cpp
+        Run Build Command(s): /snap/clion/277/bin/ninja/linux/x64/ninja -v cmTC_8c92d
+        [1/2] /usr/bin/clang++   -fcolor-diagnostics   -v -MD -MT CMakeFiles/cmTC_8c92d.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_8c92d.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_8c92d.dir/CMakeCXXCompilerABI.cpp.o -c /snap/clion/277/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp
         Ubuntu clang version 14.0.0-1ubuntu1.1
         Target: x86_64-pc-linux-gnu
         Thread model: posix
@@ -63,7 +64,7 @@ events:
         Candidate multilib: .;@m64
         Selected multilib: .;@m64
          (in-process)
-         "/usr/lib/llvm-14/bin/clang" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-6A3XEH -resource-dir /usr/lib/llvm-14/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_83503.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_83503.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/backward -internal-isystem /usr/lib/llvm-14/lib/clang/14.0.0/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../x86_64-linux-gnu/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -fdebug-compilation-dir=/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-6A3XEH -ferror-limit 19 -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -fcolor-diagnostics -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_83503.dir/CMakeCXXCompilerABI.cpp.o -x c++ /snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeCXXCompilerABI.cpp
+         "/usr/lib/llvm-14/bin/clang" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-lbap2S -resource-dir /usr/lib/llvm-14/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_8c92d.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_8c92d.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/backward -internal-isystem /usr/lib/llvm-14/lib/clang/14.0.0/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../x86_64-linux-gnu/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -fdebug-compilation-dir=/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-lbap2S -ferror-limit 19 -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -fcolor-diagnostics -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_8c92d.dir/CMakeCXXCompilerABI.cpp.o -x c++ /snap/clion/277/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp
         clang -cc1 version 14.0.0 based upon LLVM 14.0.0 default target x86_64-pc-linux-gnu
         ignoring nonexistent directory "/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../x86_64-linux-gnu/include"
         ignoring nonexistent directory "/include"
@@ -77,7 +78,7 @@ events:
          /usr/include/x86_64-linux-gnu
          /usr/include
         End of search list.
-        [2/2] : && /usr/bin/clang++  -v CMakeFiles/cmTC_83503.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_83503   && :
+        [2/2] : && /usr/bin/clang++  -v CMakeFiles/cmTC_8c92d.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_8c92d   && :
         Ubuntu clang version 14.0.0-1ubuntu1.1
         Target: x86_64-pc-linux-gnu
         Thread model: posix
@@ -87,14 +88,14 @@ events:
         Selected GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/12
         Candidate multilib: .;@m64
         Selected multilib: .;@m64
-         "/usr/bin/ld" -pie -z relro --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_83503 /lib/x86_64-linux-gnu/Scrt1.o /lib/x86_64-linux-gnu/crti.o /usr/bin/../lib/gcc/x86_64-linux-gnu/12/crtbeginS.o -L/usr/bin/../lib/gcc/x86_64-linux-gnu/12 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/usr/lib/llvm-14/bin/../lib -L/lib -L/usr/lib CMakeFiles/cmTC_83503.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/bin/../lib/gcc/x86_64-linux-gnu/12/crtendS.o /lib/x86_64-linux-gnu/crtn.o
+         "/usr/bin/ld" -pie -z relro --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_8c92d /lib/x86_64-linux-gnu/Scrt1.o /lib/x86_64-linux-gnu/crti.o /usr/bin/../lib/gcc/x86_64-linux-gnu/12/crtbeginS.o -L/usr/bin/../lib/gcc/x86_64-linux-gnu/12 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/usr/lib/llvm-14/bin/../lib -L/lib -L/usr/lib CMakeFiles/cmTC_8c92d.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/bin/../lib/gcc/x86_64-linux-gnu/12/crtendS.o /lib/x86_64-linux-gnu/crtn.o
         
       exitCode: 0
   -
     kind: "message-v1"
     backtrace:
-      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
-      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "/snap/clion/277/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
+      - "/snap/clion/277/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
       - "CMakeLists.txt:11 (project)"
     message: |
       Parsed CXX implicit include dir info: rv=done
@@ -121,16 +122,16 @@ events:
   -
     kind: "message-v1"
     backtrace:
-      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerABI.cmake:152 (message)"
-      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "/snap/clion/277/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:159 (message)"
+      - "/snap/clion/277/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
       - "CMakeLists.txt:11 (project)"
     message: |
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
-        ignore line: [Change Dir: '/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-6A3XEH']
+        ignore line: [Change Dir: '/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-lbap2S']
         ignore line: []
-        ignore line: [Run Build Command(s): /snap/clion/265/bin/ninja/linux/x64/ninja -v cmTC_83503]
-        ignore line: [[1/2] /usr/bin/clang++   -fcolor-diagnostics   -v -MD -MT CMakeFiles/cmTC_83503.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_83503.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_83503.dir/CMakeCXXCompilerABI.cpp.o -c /snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Run Build Command(s): /snap/clion/277/bin/ninja/linux/x64/ninja -v cmTC_8c92d]
+        ignore line: [[1/2] /usr/bin/clang++   -fcolor-diagnostics   -v -MD -MT CMakeFiles/cmTC_8c92d.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_8c92d.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_8c92d.dir/CMakeCXXCompilerABI.cpp.o -c /snap/clion/277/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [Ubuntu clang version 14.0.0-1ubuntu1.1]
         ignore line: [Target: x86_64-pc-linux-gnu]
         ignore line: [Thread model: posix]
@@ -143,7 +144,7 @@ events:
         ignore line: [Selected multilib: .]
         ignore line: [@m64]
         ignore line: [ (in-process)]
-        ignore line: [ "/usr/lib/llvm-14/bin/clang" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-6A3XEH -resource-dir /usr/lib/llvm-14/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_83503.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_83503.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/backward -internal-isystem /usr/lib/llvm-14/lib/clang/14.0.0/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../x86_64-linux-gnu/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -fdebug-compilation-dir=/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-6A3XEH -ferror-limit 19 -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -fcolor-diagnostics -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_83503.dir/CMakeCXXCompilerABI.cpp.o -x c++ /snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [ "/usr/lib/llvm-14/bin/clang" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-lbap2S -resource-dir /usr/lib/llvm-14/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_8c92d.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_8c92d.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12 -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/backward -internal-isystem /usr/lib/llvm-14/lib/clang/14.0.0/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../x86_64-linux-gnu/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -fdebug-compilation-dir=/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-lbap2S -ferror-limit 19 -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -fcolor-diagnostics -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_8c92d.dir/CMakeCXXCompilerABI.cpp.o -x c++ /snap/clion/277/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [clang -cc1 version 14.0.0 based upon LLVM 14.0.0 default target x86_64-pc-linux-gnu]
         ignore line: [ignoring nonexistent directory "/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../x86_64-linux-gnu/include"]
         ignore line: [ignoring nonexistent directory "/include"]
@@ -157,7 +158,7 @@ events:
         ignore line: [ /usr/include/x86_64-linux-gnu]
         ignore line: [ /usr/include]
         ignore line: [End of search list.]
-        ignore line: [[2/2] : && /usr/bin/clang++  -v CMakeFiles/cmTC_83503.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_83503   && :]
+        ignore line: [[2/2] : && /usr/bin/clang++  -v CMakeFiles/cmTC_8c92d.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_8c92d   && :]
         ignore line: [Ubuntu clang version 14.0.0-1ubuntu1.1]
         ignore line: [Target: x86_64-pc-linux-gnu]
         ignore line: [Thread model: posix]
@@ -169,7 +170,7 @@ events:
         ignore line: [@m64]
         ignore line: [Selected multilib: .]
         ignore line: [@m64]
-        link line: [ "/usr/bin/ld" -pie -z relro --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_83503 /lib/x86_64-linux-gnu/Scrt1.o /lib/x86_64-linux-gnu/crti.o /usr/bin/../lib/gcc/x86_64-linux-gnu/12/crtbeginS.o -L/usr/bin/../lib/gcc/x86_64-linux-gnu/12 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/usr/lib/llvm-14/bin/../lib -L/lib -L/usr/lib CMakeFiles/cmTC_83503.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/bin/../lib/gcc/x86_64-linux-gnu/12/crtendS.o /lib/x86_64-linux-gnu/crtn.o]
+        link line: [ "/usr/bin/ld" -pie -z relro --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_8c92d /lib/x86_64-linux-gnu/Scrt1.o /lib/x86_64-linux-gnu/crti.o /usr/bin/../lib/gcc/x86_64-linux-gnu/12/crtbeginS.o -L/usr/bin/../lib/gcc/x86_64-linux-gnu/12 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/usr/lib/llvm-14/bin/../lib -L/lib -L/usr/lib CMakeFiles/cmTC_8c92d.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/bin/../lib/gcc/x86_64-linux-gnu/12/crtendS.o /lib/x86_64-linux-gnu/crtn.o]
           arg [/usr/bin/ld] ==> ignore
           arg [-pie] ==> ignore
           arg [-zrelro] ==> ignore
@@ -181,7 +182,7 @@ events:
           arg [-dynamic-linker] ==> ignore
           arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_83503] ==> ignore
+          arg [cmTC_8c92d] ==> ignore
           arg [/lib/x86_64-linux-gnu/Scrt1.o] ==> obj [/lib/x86_64-linux-gnu/Scrt1.o]
           arg [/lib/x86_64-linux-gnu/crti.o] ==> obj [/lib/x86_64-linux-gnu/crti.o]
           arg [/usr/bin/../lib/gcc/x86_64-linux-gnu/12/crtbeginS.o] ==> obj [/usr/bin/../lib/gcc/x86_64-linux-gnu/12/crtbeginS.o]
@@ -194,7 +195,7 @@ events:
           arg [-L/usr/lib/llvm-14/bin/../lib] ==> dir [/usr/lib/llvm-14/bin/../lib]
           arg [-L/lib] ==> dir [/lib]
           arg [-L/usr/lib] ==> dir [/usr/lib]
-          arg [CMakeFiles/cmTC_83503.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [CMakeFiles/cmTC_8c92d.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
           arg [-lstdc++] ==> lib [stdc++]
           arg [-lm] ==> lib [m]
           arg [-lgcc_s] ==> lib [gcc_s]
@@ -224,21 +225,22 @@ events:
   -
     kind: "try_compile-v1"
     backtrace:
-      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
-      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CheckCXXSourceCompiles.cmake:52 (cmake_check_source_compiles)"
-      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/FindThreads.cmake:99 (CHECK_CXX_SOURCE_COMPILES)"
-      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/FindThreads.cmake:163 (_threads_check_libc)"
-      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "/snap/clion/277/bin/cmake/linux/x64/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/snap/clion/277/bin/cmake/linux/x64/share/cmake-3.28/Modules/CheckCXXSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "/snap/clion/277/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindThreads.cmake:99 (CHECK_CXX_SOURCE_COMPILES)"
+      - "/snap/clion/277/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "/snap/clion/277/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
       - "/usr/lib/x86_64-linux-gnu/cmake/Qt6/Qt6Dependencies.cmake:48 (find_dependency)"
       - "/usr/lib/x86_64-linux-gnu/cmake/Qt6/Qt6Config.cmake:181 (include)"
-      - "/home/jose/Documents/SabanaHerons2024/Util/SimRobot/Make/CMake/Qt6.cmake:2 (find_package)"
+      - "/home/nao/SabanaHerons2024/Util/SimRobot/Make/CMake/Qt6.cmake:2 (find_package)"
       - "CMakeLists.txt:194 (include)"
     checks:
       - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
     directories:
-      source: "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-b3eG98"
-      binary: "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-b3eG98"
+      source: "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-LrNHaT"
+      binary: "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-LrNHaT"
     cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS-NOTFOUND"
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: ""
       CMAKE_EXE_LINKER_FLAGS: ""
@@ -247,35 +249,36 @@ events:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: '/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-b3eG98'
+        Change Dir: '/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-LrNHaT'
         
-        Run Build Command(s): /snap/clion/265/bin/ninja/linux/x64/ninja -v cmTC_69b31
-        [1/2] /usr/bin/clang++ -DCMAKE_HAVE_LIBC_PTHREAD  -std=c++20 -fcolor-diagnostics -MD -MT CMakeFiles/cmTC_69b31.dir/src.cxx.o -MF CMakeFiles/cmTC_69b31.dir/src.cxx.o.d -o CMakeFiles/cmTC_69b31.dir/src.cxx.o -c /home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-b3eG98/src.cxx
-        [2/2] : && /usr/bin/clang++   CMakeFiles/cmTC_69b31.dir/src.cxx.o -o cmTC_69b31   && :
+        Run Build Command(s): /snap/clion/277/bin/ninja/linux/x64/ninja -v cmTC_d5403
+        [1/2] /usr/bin/clang++ -DCMAKE_HAVE_LIBC_PTHREAD  -std=c++20 -fcolor-diagnostics -MD -MT CMakeFiles/cmTC_d5403.dir/src.cxx.o -MF CMakeFiles/cmTC_d5403.dir/src.cxx.o.d -o CMakeFiles/cmTC_d5403.dir/src.cxx.o -c /home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-LrNHaT/src.cxx
+        [2/2] : && /usr/bin/clang++   CMakeFiles/cmTC_d5403.dir/src.cxx.o -o cmTC_d5403   && :
         
       exitCode: 0
   -
     kind: "try_compile-v1"
     backtrace:
-      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
-      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CheckCXXSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "/snap/clion/277/bin/cmake/linux/x64/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/snap/clion/277/bin/cmake/linux/x64/share/cmake-3.28/Modules/CheckCXXSourceCompiles.cmake:52 (cmake_check_source_compiles)"
       - "/usr/lib/x86_64-linux-gnu/cmake/Qt6/FindWrapAtomic.cmake:31 (check_cxx_source_compiles)"
-      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "/snap/clion/277/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
       - "/usr/lib/x86_64-linux-gnu/cmake/Qt6Core/Qt6CoreDependencies.cmake:48 (find_dependency)"
       - "/usr/lib/x86_64-linux-gnu/cmake/Qt6Core/Qt6CoreConfig.cmake:50 (include)"
-      - "/snap/clion/265/bin/cmake/linux/x64/share/cmake-3.27/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "/snap/clion/277/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
       - "/usr/lib/x86_64-linux-gnu/cmake/Qt6/QtPublicDependencyHelpers.cmake:14 (find_dependency)"
       - "/usr/lib/x86_64-linux-gnu/cmake/Qt6Concurrent/Qt6ConcurrentDependencies.cmake:96 (_qt_internal_find_dependencies)"
       - "/usr/lib/x86_64-linux-gnu/cmake/Qt6Concurrent/Qt6ConcurrentConfig.cmake:50 (include)"
       - "/usr/lib/x86_64-linux-gnu/cmake/Qt6/Qt6Config.cmake:219 (find_package)"
-      - "/home/jose/Documents/SabanaHerons2024/Util/SimRobot/Make/CMake/Qt6.cmake:2 (find_package)"
+      - "/home/nao/SabanaHerons2024/Util/SimRobot/Make/CMake/Qt6.cmake:2 (find_package)"
       - "CMakeLists.txt:194 (include)"
     checks:
       - "Performing Test HAVE_STDATOMIC"
     directories:
-      source: "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ny0iU5"
-      binary: "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ny0iU5"
+      source: "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-1IINPC"
+      binary: "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-1IINPC"
     cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS-NOTFOUND"
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: ""
       CMAKE_EXE_LINKER_FLAGS: ""
@@ -284,11 +287,11 @@ events:
       variable: "HAVE_STDATOMIC"
       cached: true
       stdout: |
-        Change Dir: '/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ny0iU5'
+        Change Dir: '/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-1IINPC'
         
-        Run Build Command(s): /snap/clion/265/bin/ninja/linux/x64/ninja -v cmTC_b114b
-        [1/2] /usr/bin/clang++ -DHAVE_STDATOMIC  -std=c++20 -fcolor-diagnostics -MD -MT CMakeFiles/cmTC_b114b.dir/src.cxx.o -MF CMakeFiles/cmTC_b114b.dir/src.cxx.o.d -o CMakeFiles/cmTC_b114b.dir/src.cxx.o -c /home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ny0iU5/src.cxx
-        [2/2] : && /usr/bin/clang++   CMakeFiles/cmTC_b114b.dir/src.cxx.o -o cmTC_b114b   && :
+        Run Build Command(s): /snap/clion/277/bin/ninja/linux/x64/ninja -v cmTC_1b400
+        [1/2] /usr/bin/clang++ -DHAVE_STDATOMIC  -std=c++20 -fcolor-diagnostics -MD -MT CMakeFiles/cmTC_1b400.dir/src.cxx.o -MF CMakeFiles/cmTC_1b400.dir/src.cxx.o.d -o CMakeFiles/cmTC_1b400.dir/src.cxx.o -c /home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-1IINPC/src.cxx
+        [2/2] : && /usr/bin/clang++   CMakeFiles/cmTC_1b400.dir/src.cxx.o -o cmTC_1b400   && :
         
       exitCode: 0
 ...

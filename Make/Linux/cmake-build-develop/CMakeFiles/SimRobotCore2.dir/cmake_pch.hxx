@@ -2,7 +2,7 @@
 
 #pragma clang system_header
 #ifdef __cplusplus
-#include "/home/jose/Documents/SabanaHerons2024/Make/Linux/../../Util/SimRobot/Src/SimRobotCore2/CoreModule.h"
-#include "/home/jose/Documents/SabanaHerons2024/Make/Linux/../../Util/SimRobot/Src/SimRobotCore2/Graphics/OpenGL.h"
-#include "/home/jose/Documents/SabanaHerons2024/Make/Linux/../../Util/SimRobot/Src/SimRobotCore2/Simulation/SimObject.h"
+#include "/home/nao/SabanaHerons2024/Make/Linux/../../Util/SimRobot/Src/SimRobotCore2/CoreModule.h"
+#include "/home/nao/SabanaHerons2024/Make/Linux/../../Util/SimRobot/Src/SimRobotCore2/Graphics/OpenGL.h"
+#include "/home/nao/SabanaHerons2024/Make/Linux/../../Util/SimRobot/Src/SimRobotCore2/Simulation/SimObject.h"
 #endif // __cplusplus
