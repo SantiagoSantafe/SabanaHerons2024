@@ -36,7 +36,7 @@ SKILL_IMPLEMENTATION(DribbleToGoalImpl,
     (float)(10.f) stepLength, /**< Iterate this much per step. */
     (float)(1200.f) obstacleDistance, /**< Ignore obstacles further away than this distance. */
     (Angle)(3_deg) minFreeSector,
-    (float)(1000.f) dribbleRange, /**< Planned look ahead dribble kick range. */
+    (float)(1300.f) dribbleRange, /**< Planned look ahead dribble kick range. */
     (float)(500.f) safeDistanceToFieldBoarder, /**< Dribble range + this threshold shall not touch the field border. */
     (float)(500.f) lookActiveMinBallDistance, /**< If the ball is at least this far away, use lookActive with withBall = true. */
     (float)(15.f) searchStepDrawWidth,

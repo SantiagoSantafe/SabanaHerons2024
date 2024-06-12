@@ -51,6 +51,8 @@ STREAMABLE(KickRequest,
   {,
     kickForwardFast,
     kickForwardFastLong,
+    diagonalFastLeft,
+    diagonalFastRight,
     // kicks up to here are loaded by the KickEngine
     newKick,
     none,
