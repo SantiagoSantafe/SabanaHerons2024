@@ -267,7 +267,9 @@ class ZweikampfImpl : public ZweikampfImplBase
       {
         if(((kick == KickInfo::walkForwardsLeft ||
              kick == KickInfo::walkTurnLeftFootToRight ||
-             kick == KickInfo::walkTurnLeftFootToRightShifted) && theKickInfo[kick].range.min <= minForwardTurnRange) ||
+             kick == KickInfo::walkTurnLeftFootToRightShifted ||
+             kick == KickInfo::diagonalFastRight ||
+             kick == KickInfo::diagonalFastLeft) && theKickInfo[kick].range.min <= minForwardTurnRange) ||
            theKickInfo[kick].kickLeg != Legs::right) // skip clones
           continue;
         distances.push_back(theKickInfo[kick].range.min);
