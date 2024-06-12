@@ -4,6 +4,6 @@
 
 method=source_dir
 command=
-source_dir=/home/jose/Documents/SabanaHerons2024/Make/Linux
+source_dir=/home/nao/SabanaHerons2024/Make/Linux
 work_dir=
 

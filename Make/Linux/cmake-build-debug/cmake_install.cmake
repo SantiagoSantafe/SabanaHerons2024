@@ -1,4 +1,4 @@
-# Install script for directory: /home/jose/Documents/SabanaHerons2024/Make/Linux
+# Install script for directory: /home/nao/SabanaHerons2024/Make/Linux
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/jose/Documents/SabanaHerons2024/Make/Linux/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

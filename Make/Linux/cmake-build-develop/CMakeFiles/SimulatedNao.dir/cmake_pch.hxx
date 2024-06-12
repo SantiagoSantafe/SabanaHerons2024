@@ -14,7 +14,7 @@
 #include <algorithm>
 #include <list>
 #include <sstream>
-#include "/home/jose/Documents/SabanaHerons2024/Make/Linux/../../Src/Libs/MathBase/BHMath.h"
-#include "/home/jose/Documents/SabanaHerons2024/Make/Linux/../../Src/Libs/MathBase/Eigen.h"
-#include "/home/jose/Documents/SabanaHerons2024/Make/Linux/../../Src/Libs/MathBase/RingBufferWithSum.h"
+#include "/home/nao/SabanaHerons2024/Make/Linux/../../Src/Libs/MathBase/BHMath.h"
+#include "/home/nao/SabanaHerons2024/Make/Linux/../../Src/Libs/MathBase/Eigen.h"
+#include "/home/nao/SabanaHerons2024/Make/Linux/../../Src/Libs/MathBase/RingBufferWithSum.h"
 #endif // __cplusplus

@@ -1,0 +1,24 @@
+{
+	"BUILD_DIR" : "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/SimRobotEditor_autogen",
+	"CMAKE_BINARY_DIR" : "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/nao/SabanaHerons2024/Make/Linux",
+	"CMAKE_SOURCE_DIR" : "/home/nao/SabanaHerons2024/Make/Linux",
+	"GENERATOR" : "Ninja",
+	"INCLUDE_DIR" : "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/SimRobotEditor_autogen/include",
+	"INPUTS" : 
+	[
+		"/home/nao/SabanaHerons2024/Util/SimRobot/Src/SimRobotEditor/Icons/icons8-documents-50.png",
+		"/home/nao/SabanaHerons2024/Util/SimRobot/Src/SimRobotEditor/Icons/icons8-document-50.png"
+	],
+	"LOCK_FILE" : "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/SimRobotEditor_autogen.dir/AutoRcc_SimRobotEditor_DIYSMWL27B_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "SimRobotEditor" ],
+	"OUTPUT_CHECKSUM" : "DIYSMWL27B",
+	"OUTPUT_NAME" : "qrc_SimRobotEditor.cpp",
+	"RCC_EXECUTABLE" : "/usr/lib/qt6/libexec/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/CMakeFiles/SimRobotEditor_autogen.dir/AutoRcc_SimRobotEditor_DIYSMWL27B_Used.txt",
+	"SOURCE" : "/home/nao/SabanaHerons2024/Util/SimRobot/Src/SimRobotEditor/SimRobotEditor.qrc",
+	"VERBOSITY" : 0
+}

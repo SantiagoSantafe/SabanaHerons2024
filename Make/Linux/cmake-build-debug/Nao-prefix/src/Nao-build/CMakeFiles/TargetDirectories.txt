@@ -1,0 +1,15 @@
+/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/Nao-prefix/src/Nao-build/CMakeFiles/asmjit.dir
+/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/Nao-prefix/src/Nao-build/CMakeFiles/CompiledNN.dir
+/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/Nao-prefix/src/Nao-build/CMakeFiles/Platform.dir
+/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/Nao-prefix/src/Nao-build/CMakeFiles/MathBase.dir
+/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/Nao-prefix/src/Nao-build/CMakeFiles/Streaming.dir
+/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/Nao-prefix/src/Nao-build/CMakeFiles/Math.dir
+/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/Nao-prefix/src/Nao-build/CMakeFiles/ImageProcessing.dir
+/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/Nao-prefix/src/Nao-build/CMakeFiles/Network.dir
+/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/Nao-prefix/src/Nao-build/CMakeFiles/RobotParts.dir
+/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/Nao-prefix/src/Nao-build/CMakeFiles/Debugging.dir
+/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/Nao-prefix/src/Nao-build/CMakeFiles/Framework.dir
+/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/Nao-prefix/src/Nao-build/CMakeFiles/B-Human.dir
+/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/Nao-prefix/src/Nao-build/CMakeFiles/Nao.dir
+/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/Nao-prefix/src/Nao-build/CMakeFiles/edit_cache.dir
+/home/nao/SabanaHerons2024/Make/Linux/cmake-build-debug/Nao-prefix/src/Nao-build/CMakeFiles/rebuild_cache.dir
