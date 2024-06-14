@@ -119,6 +119,10 @@ STREAMABLE(KickInfo,
         return KickInfo::walkForwardsRightVeryLong;
       case KickInfo::walkForwardsRightVeryLong:
         return KickInfo::walkForwardsLeftVeryLong;
+      case KickInfo::diagonalFastLeft:
+        return KickInfo::diagonalFastRight;
+      case KickInfo::diagonalFastRight:
+        return KickInfo::diagonalFastLeft;
       default:
       {
         FAIL("Unknown kick type.");
