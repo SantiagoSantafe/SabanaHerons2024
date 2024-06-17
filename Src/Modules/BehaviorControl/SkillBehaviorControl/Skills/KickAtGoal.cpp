@@ -154,11 +154,11 @@ class KickAtGoalImpl : public KickAtGoalImplBase
         {
           timeToReachBestKickPose = ttrp;
           bestKickPoseRelative = kickPose;
-          bestKickType = kick;
+          bestKickType = KickInfo::slideKickRight;
         }
       }
 
-      kickDirectionRelative = Angle::normalize(bestKickPoseRelative.rotation - theKickInfo[bestKickType].rotationOffset);
+      kickDirectionRelative = Angle::normalize(bestKickPoseRelative.rotation - theKickInfo[bestKickType].rotationOffset);//TODO Change this line with this  bestKickPoseRelative.rotation - theKickInfo[bestKickType].rotationOffset
       kickType = bestKickType;
       VERIFY(Geometry::getIntersectionOfLines(goalLine,
                                               Geometry::Line(Pose2f(Angle::normalize(theRobotPose.rotation + kickDirectionRelative),
@@ -285,13 +285,13 @@ class KickAtGoalImpl : public KickAtGoalImplBase
           {
             timeToReachBestKickPose = ttrp;
             bestKickPoseRelative = kickPose;
-            bestKickType = kick;
+            bestKickType = KickInfo::slideKickRight;
           }
         }
 
         if(bestKickType != KickInfo::numOfKickTypes)
         {
-          kickDirectionRelative = Angle::normalize(bestKickPoseRelative.rotation - theKickInfo[bestKickType].rotationOffset);
+          kickDirectionRelative = Angle::normalize(bestKickPoseRelative.rotation - theKickInfo[bestKickType].rotationOffset);//TODO change this line with this bestKickPoseRelative.rotation - theKickInfo[bestKickType].rotationOffset
           kickType = bestKickType;
           VERIFY(Geometry::getIntersectionOfLines(goalLine,
                                                   Geometry::Line(Pose2f(Angle::normalize(theRobotPose.rotation + kickDirectionRelative),
