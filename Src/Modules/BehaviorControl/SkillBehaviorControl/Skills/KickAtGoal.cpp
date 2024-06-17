@@ -70,7 +70,7 @@ class KickAtGoalImpl : public KickAtGoalImplBase
     if(aimingAtGoal && allowDirectKick)
     {
       theGoToBallAndKickSkill({.targetDirection = kickDirectionRelative,
-                               .kickType = kickType,
+                               .kickType = KickInfo::slideKickRight,
                                .alignPrecisely = theKickInfo[kickType].motion == MotionPhase::walk ? KickPrecision::notPrecise : KickPrecision::precise });
       state = notActive;
     }
@@ -320,7 +320,7 @@ class KickAtGoalImpl : public KickAtGoalImplBase
       {
         case KickInfo::forwardFastLeft:
         case KickInfo::forwardFastLeftLong:
-        case KickInfo::diagonalFastLeft:
+        case KickInfo::slideKickLeft:
         {
           if(theDamageConfigurationBody.sides[Legs::right].weakLeg)
             continue; // skip this kick
@@ -328,7 +328,7 @@ class KickAtGoalImpl : public KickAtGoalImplBase
         }
         case KickInfo::forwardFastRight:
         case KickInfo::forwardFastRightLong:
-        case KickInfo::diagonalFastRight:
+        case KickInfo::slideKickRight:
         {
           if(theDamageConfigurationBody.sides[Legs::left].weakLeg)
             continue; // skip this kick

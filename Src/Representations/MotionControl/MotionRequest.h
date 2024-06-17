@@ -103,7 +103,7 @@ STREAMABLE(MotionRequest,
 
   (Angle)(0_deg) targetDirection, /**< The target direction of the ball (only used if type is walkToBallAndKick or dribble). */
   (Rangea) directionPrecision, /**< The min and max target direction difference of the ball (only used if type is walkToBallAndKick or dribble). */
-  (KickInfo::KickType)(KickInfo::diagonalFastRight) kickType, /**< The kick type (only used if type is walkToBallAndKick). */
+  (KickInfo::KickType)(KickInfo::forwardFastLeft) kickType, /**< The kick type (only used if type is walkToBallAndKick). */
   (float)(0.f) kickLength, /**< The kick length (only used if type is walkToBallAndKick) (in mm). */
   (KickPrecision)(KickPrecision::notPrecise) alignPrecisely, /**< Whether the robot should align (and kick) more precisely than usual, probably taking more time. */
   (bool)(true) preStepAllowed, /**< Is the InWalkKick allowed to have a preStep? */

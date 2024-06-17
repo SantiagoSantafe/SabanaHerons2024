@@ -21,5 +21,6 @@ namespace WalkKicks
     turnOut,
     forwardSteal,
     forwardAlternative,
+    slideKick,
   });
 }

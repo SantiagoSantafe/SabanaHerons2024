@@ -97,8 +97,8 @@ void WalkToBallAndKickEngine::update(WalkToBallAndKickGenerator& walkToBallAndKi
       case KickInfo::walkForwardStealBallRight:
       case KickInfo::walkForwardsRightAlternative:
       case KickInfo::walkForwardsLeftAlternative:
-      case KickInfo::diagonalFastRight:
-      case KickInfo::diagonalFastLeft:
+      case KickInfo::slideKickRight:
+      case KickInfo::slideKickLeft:
       {
         walkKickVariant = WalkKickVariant(motionRequest.kickType, theKickInfo[motionRequest.kickType].walkKickType, theKickInfo[motionRequest.kickType].kickLeg, motionRequest.alignPrecisely, motionRequest.kickLength, motionRequest.targetDirection, motionRequest.shiftTurnKickPose);
         isInPositionForKick = theWalkKickGenerator.canStart(walkKickVariant, lastPhase, precisionRange, motionRequest.preStepAllowed, motionRequest.turnKickAllowed);

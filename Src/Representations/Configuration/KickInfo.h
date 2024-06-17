@@ -47,8 +47,8 @@ STREAMABLE(KickInfo,
     walkForwardsLeftAlternative,
     walkForwardsRightVeryLong,
     walkForwardsLeftVeryLong,
-    diagonalFastRight,
-    diagonalFastLeft,
+    slideKickRight,
+    slideKickLeft,
 
     // kicks up to here are used by the KickView
     newKick,
@@ -119,10 +119,10 @@ STREAMABLE(KickInfo,
         return KickInfo::walkForwardsRightVeryLong;
       case KickInfo::walkForwardsRightVeryLong:
         return KickInfo::walkForwardsLeftVeryLong;
-      case KickInfo::diagonalFastLeft:
-        return KickInfo::diagonalFastRight;
-      case KickInfo::diagonalFastRight:
-        return KickInfo::diagonalFastLeft;
+      case KickInfo::slideKickLeft:
+        return KickInfo::slideKickRight;
+      case KickInfo::slideKickRight:
+        return KickInfo::slideKickLeft;
       default:
       {
         FAIL("Unknown kick type.");

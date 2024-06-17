@@ -678,25 +678,6 @@ class PassToTeammateImpl : public PassToTeammateImplBase
               return {KickInfo::forwardFastRightPass, KickInfo::forwardFastLeftPass};
             continue;
           }
-          case KickInfo::diagonalFastLeft:
-          case  KickInfo::diagonalFastRight:
-          {
-              // Skip this kick if it requires standing on a weak leg of the robot.
-              if(kick.motion == MotionPhase::kick &&
-                theDamageConfigurationBody.sides[kick.mirror ? Legs::right : Legs::left].weakLeg)
-                continue;
-              // This kick requires standing still and should only be used and preferred during any restart in play (free kick, corner kick, goal kick, kick-in) except for kick-offs.
-              if(!isFreeKick() && !isKickOff())
-                continue;
-              const float kickRangeExtension = kickRangeOffset + (kickType == lastKickType ? 200.f : 0.f);
-              // This kick should only be used for distances close to the minimum or maximum of it's range.
-              const Rangef minRange(kick.range.min - kickRangeExtension, kick.range.min + kickRangeExtension);
-              const Rangef maxRange(kick.range.max - kickRangeExtension, kick.range.max + kickRangeExtension);
-              if(minRange.isInside(kickLength) ||
-                maxRange.isInside(kickLength))
-                return {KickInfo::diagonalFastRight, KickInfo::diagonalFastLeft};
-                continue;
-          }
 
           case KickInfo::walkForwardsRightLong:
           case KickInfo::walkForwardsLeftLong:
