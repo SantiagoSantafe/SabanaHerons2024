@@ -35,7 +35,7 @@ option(HandleGameState)
       theLookAtAnglesSkill({.pan = 0_deg,
                             .tilt = 0_deg,
                             .speed = 150_deg});
-      theStandSkill({.high = true});
+      theStandSkill();
     }
   }
 
@@ -69,9 +69,11 @@ option(HandleGameState)
                                        Vector2f::Zero();
         theLookAtPointSkill({.target = (Vector3f() << theRobotPose.inverse() * targetOnField, theBallSpecification.radius).finished()});
       }
-      else
+      else{
         theLookActiveSkill({.ignoreBall = true});
-      theStandSkill({.high = true});
+        theStandSkill();
+      }
+
     }
   }
 

@@ -42,8 +42,10 @@ bool beginOfRefereeSignal() const
          && (((theGameState.isKickOff() || GameState::isKickOff(theExtendedGameState.stateLastFrame))
               && ((theExtendedGameState.wasSet() && theGameState.isPlaying())
                   || (theExtendedGameState.wasPlaying() && theGameState.isReady())))
-             || (theExtendedGameState.stateLastFrame != GameState::afterHalf && theGameState.state == GameState::afterHalf));
+             || (theExtendedGameState.stateLastFrame != GameState::afterHalf && theGameState.state == GameState::afterHalf)
+             || (theGameState.isInitial())); 
 }
+
 
 /**
  * Send the actual referee signal and maybe also speak it out load.
@@ -96,7 +98,7 @@ option(RefereeWatchdog)
     {
       if(beginOfRefereeSignal())
       {
-        if(theGameState.whistled || theGameState.state == GameState::afterHalf)
+        if(theGameState.whistled || theGameState.state == GameState::afterHalf || theGameState.isInitial())
           goto delaying;
         else
           goto sending;
@@ -141,7 +143,7 @@ option(RefereeActivation)
   {
     transition
     {
-      if(beginOfRefereeSignal() && (theGameState.whistled || theGameState.state == GameState::afterHalf))
+      if(beginOfRefereeSignal() && (theGameState.whistled || theGameState.state == GameState::afterHalf || theGameState.isInitial()))
         goto delaying;
     }
   }
@@ -163,6 +165,7 @@ option(RefereeActivation)
     }
   }
 }
+
 
 /**
  * The detection of the referee signal. In only becomes active if the robot is
@@ -186,13 +189,10 @@ option(HandleRefereeSignal)
 
   const auto blocked = [&]()
   {
-    // It is important to see the arms next to the body. Assume +/-40 cm around the referee position are enough.
     const Angle refereeEdge1 = (theRobotPose.inverse() * (refereeOnField + Vector2f(400.f, 0.f))).angle();
     const Angle refereeEdge2 = (theRobotPose.inverse() * (refereeOnField - Vector2f(400.f, 0.f))).angle();
     const Rangea referee(std::min(refereeEdge1, refereeEdge2), std::max(refereeEdge1, refereeEdge2));
 
-    // Assume that we need to see the referee from 80 cm upward. We look from a height of 50 cm and other robots
-    // have a height of less than 60 cm. So they are in the way if closer than 1/3 of the distance to the referee.
     const float distanceThreshold = refereeOffsetOnField.norm() / 3.f;
     for(const Obstacle& obstacle : theObstacleModel.obstacles)
       switch(obstacle.type)
@@ -222,11 +222,9 @@ option(HandleRefereeSignal)
   {
     transition
     {
-      DEBUG_RESPONSE_ONCE("option:HandleRefereeSignal:now")
-        goto turnToReferee;
-      if(action_done
+      if((action_done
          && Rangef(2500.f, 6000.f).isInside(refereeOffsetOnField.norm())
-         && Rangea(55_deg, 125_deg).isInside(std::abs(refereeOffsetOnField.angle())))
+         && Rangea(55_deg, 125_deg).isInside(std::abs(refereeOffsetOnField.angle()))) || theGameState.isInitial())
         goto turnToReferee;
     }
     action

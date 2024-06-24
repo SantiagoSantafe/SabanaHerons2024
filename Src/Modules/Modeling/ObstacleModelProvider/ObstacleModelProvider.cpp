@@ -93,7 +93,7 @@ void ObstacleModelProvider::deleteObstacles()
        || centerDistanceSquared >= sqr(maxDistance)
        || centerDistanceSquared <= sqr(obstacleRadius * 0.5f) // Obstacle is really inside us
        // HACK: Ignore the referee hand before the kick-off.
-       || (!theExtendedGameState.wasPlaying() && theGameState.isPlaying() && theFrameInfo.getTimeSince(obstacle->lastSeen) > 1500)
+       /*|| (!theExtendedGameState.wasPlaying() && theGameState.isPlaying() && theFrameInfo.getTimeSince(obstacle->lastSeen) > 1500)*/
        || theFieldDimensions.clipToField(absObsPos) > 500.f // obstacleIsNotOnField
        //|| obstacle->velocity.squaredNorm() > sqr(maxVelocity)  // The velocity is currently not accurate enough for this
       )
@@ -104,6 +104,7 @@ void ObstacleModelProvider::deleteObstacles()
       ++obstacle;
   }
 }
+
 
 void ObstacleModelProvider::dynamic()
 {

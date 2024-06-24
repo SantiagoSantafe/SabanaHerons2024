@@ -144,7 +144,7 @@ void GlobalOpponentsTracker::deleteObstacles()
       || centerDistanceSquared >= sqr(maxDistance)
       || centerDistanceSquared <= sqr(obstacleRadius * 0.5f) // Obstacle is really inside us
       // HACK: Ignore the referee hand before the kick-off.
-      || (!theExtendedGameState.wasPlaying() && theGameState.isPlaying() && theFrameInfo.getTimeSince(obstacle->lastSeen) > 1500)
+      || shouldIgnoreReferee(*obstacle)  // Use the new shouldIgnore function
       || theFieldDimensions.clipToField(absObsPos) > 500.f // obstacleIsNotOnField
       )
     {
@@ -154,6 +154,13 @@ void GlobalOpponentsTracker::deleteObstacles()
       ++obstacle;
   }
 }
+bool GlobalOpponentsTracker::shouldIgnoreReferee(const GlobalOpponentsHypothesis& hypothesis) const
+{
+  // If the last seen obstacle time is older than 1500ms before the game state change from non-playing to playing
+  // we ignore it to avoid mistaking the referee's hand for an opponent.
+  return theExtendedGameState.wasPlaying() && !theGameState.isPlaying() && theFrameInfo.getTimeSince(hypothesis.lastSeen) > 1500;
+}
+
 
 void GlobalOpponentsTracker::dynamic()
 {

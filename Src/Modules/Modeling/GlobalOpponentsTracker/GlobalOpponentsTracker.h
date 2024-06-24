@@ -144,6 +144,7 @@ private:
 
   /** The function deletes hypotheses that are no longer valid. */
   void deleteObstacles();
+  bool shouldIgnoreReferee(const GlobalOpponentsHypothesis& obstacle) const;
 
   /** The function apply dynamic step from extended kalman filter on all hypotheses. */
   void dynamic();
