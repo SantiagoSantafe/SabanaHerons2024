@@ -18,11 +18,6 @@ KeyframeMotionRequest KeyframeMotionRequest::fromDiveRequest(MotionRequest::Dive
       keyframeMotionRequest.keyframeMotion = sitDownKeeper;
       keyframeMotionRequest.mirror = false;
       break;
-    case MotionRequest::Dive::jumpLeft:
-    case MotionRequest::Dive::jumpRight:
-      keyframeMotionRequest.keyframeMotion = keeperJumpLeft;
-      keyframeMotionRequest.mirror = diveRequest == MotionRequest::Dive::jumpRight;
-      break;
     case MotionRequest::Dive::squatArmsBackLeft:
     case MotionRequest::Dive::squatArmsBackRight:
       keyframeMotionRequest.keyframeMotion = genuflectStand;
@@ -38,6 +33,7 @@ KeyframeMotionRequest KeyframeMotionRequest::fromDiveRequest(MotionRequest::Dive
   }
   return keyframeMotionRequest;
 }
+
 
 KeyframeMotionRequest KeyframeMotionRequest::fromSpecialRequest(MotionRequest::Special::Request specialRequest)
 {
