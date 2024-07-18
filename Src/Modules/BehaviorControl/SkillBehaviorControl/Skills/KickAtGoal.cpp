@@ -70,7 +70,7 @@ class KickAtGoalImpl : public KickAtGoalImplBase
     if(aimingAtGoal && allowDirectKick)
     {
       theGoToBallAndKickSkill({.targetDirection = kickDirectionRelative,
-                               .kickType = kickType,
+                               .kickType = KickInfo::walkForwardsRightAlternative,
                                .alignPrecisely = theKickInfo[kickType].motion == MotionPhase::walk ? KickPrecision::notPrecise : KickPrecision::precise });
       state = notActive;
     }
