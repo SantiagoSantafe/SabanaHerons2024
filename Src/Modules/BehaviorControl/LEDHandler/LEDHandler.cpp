@@ -134,11 +134,12 @@ void LEDHandler::setEyeColor(LEDRequest& ledRequest,
 
 void LEDHandler::setLeftEye(LEDRequest& ledRequest)
 {
+  setEyeColor(ledRequest, true, yellow, LEDRequest::on);
 }
 
 void LEDHandler::setRightEye(LEDRequest& ledRequest)
 {
-  
+  setEyeColor(ledRequest, false, red, LEDRequest::on);
 }
 
 void LEDHandler::setHead(LEDRequest& ledRequest)
