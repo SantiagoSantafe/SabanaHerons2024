@@ -134,55 +134,11 @@ void LEDHandler::setEyeColor(LEDRequest& ledRequest,
 
 void LEDHandler::setLeftEye(LEDRequest& ledRequest)
 {
-  //no groundContact
-  if(!theGroundContactState.contact/* && (theFrameInfo.time & 512)*/)
-    setEyeColor(ledRequest, true, yellow, LEDRequest::on);
-  else
-  {
-    bool ballSeen = theFrameInfo.getTimeSince(theBallModel.timeWhenLastSeen) < 250;
-    bool featureSeen = theFrameInfo.getTimeSince(theFieldFeatureOverview.combinedStatus.lastSeen) < 250;
-
-    if(ballSeen && featureSeen)
-      setEyeColor(ledRequest, true, red, LEDRequest::on);
-    else if(ballSeen)
-      setEyeColor(ledRequest, true, white, LEDRequest::on);
-    else if(featureSeen)
-      setEyeColor(ledRequest, true, blue, LEDRequest::on);
-  }
 }
 
 void LEDHandler::setRightEye(LEDRequest& ledRequest)
 {
-  if(Role::isActiveRole(theStrategyStatus.role))
-    setEyeColor(ledRequest, false, red, LEDRequest::on);
-  else
-  {
-    switch(theStrategyStatus.position)
-    {
-      case Tactic::Position::goalkeeper:
-        setEyeColor(ledRequest, false, blue, LEDRequest::on);
-        break;
-      case Tactic::Position::defender:
-      case Tactic::Position::defenderL:
-      case Tactic::Position::defenderR:
-        setEyeColor(ledRequest, false, white, LEDRequest::on);
-        break;
-      case Tactic::Position::midfielder:
-      case Tactic::Position::midfielderM:
-      case Tactic::Position::midfielderL:
-      case Tactic::Position::midfielderR:
-        setEyeColor(ledRequest, false, green, LEDRequest::on);
-        break;
-      case Tactic::Position::forward:
-      case Tactic::Position::forwardM:
-      case Tactic::Position::forwardL:
-      case Tactic::Position::forwardR:
-        setEyeColor(ledRequest, false, cyan, LEDRequest::on);
-        break;
-      default:
-        ASSERT(theStrategyStatus.position == Tactic::Position::none);
-    }
-  }
+  
 }
 
 void LEDHandler::setHead(LEDRequest& ledRequest)
