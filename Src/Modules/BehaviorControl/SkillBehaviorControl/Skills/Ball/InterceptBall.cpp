@@ -44,9 +44,9 @@ class InterceptBallImpl : public InterceptBallImplBase
         unsigned interceptionMethods = p.interceptionMethods;
         left = positionIntersectionYAxis > 0.f;
         if(left)
-          interceptionMethods &= ~bit(Interception::jumpRight);
+          interceptionMethods &= ~bit(Interception::genuflectStandDefender);
         else
-          interceptionMethods &= ~bit(Interception::jumpLeft);
+          interceptionMethods &= ~bit(Interception::genuflectStandDefender);
         ASSERT(interceptionMethods != 0);
 
         if((interceptionMethods & bit(Interception::stand)) && (between<float>(positionIntersectionYAxis, -theBehaviorParameters.standRadius, theBehaviorParameters.standRadius) || interceptionMethods < (bit(Interception::stand) << 1)))
@@ -106,9 +106,9 @@ class InterceptBallImpl : public InterceptBallImplBase
           unsigned interceptionMethods = p.interceptionMethods;
           left = positionIntersectionYAxis > 0.f;
           if(left)
-            interceptionMethods &= ~bit(Interception::jumpRight);
+            interceptionMethods &= ~bit(Interception::genuflectStandDefender);
           else
-            interceptionMethods &= ~bit(Interception::jumpLeft);
+            interceptionMethods &= ~bit(Interception::genuflectStandDefender);
           ASSERT(interceptionMethods != 0);
 
           if((interceptionMethods & bit(Interception::walk)) && (between<float>(positionIntersectionYAxis, -theBehaviorParameters.walkRadius, theBehaviorParameters.walkRadius)))
