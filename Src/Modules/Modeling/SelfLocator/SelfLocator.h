@@ -51,7 +51,6 @@ MODULE(SelfLocator,
   REQUIRES(WorldModelPrediction),
   REQUIRES(SetupPoses),
   REQUIRES(StaticInitialPose),
-  REQUIRES(GroundTruthRobotPose),
   PROVIDES(RobotPose),
   PROVIDES(SelfLocalizationHypotheses),
   LOADS_PARAMETERS(
@@ -83,7 +82,7 @@ MODULE(SelfLocator,
     (int)    minNumberOfObservationsForResetting,    /**< To accept an alternative robot pose, it must be based on at least this many observations of field features. */
     (float)  translationalDeviationForResetting,     /**< To insert a new particle, the current alternative pose must be farther away from the current robot pose than this threshold. */
     (float)  rotationalDeviationForResetting,        /**< To insert a new particle, the current alternative pose rotation must be more different from the current robot pose rotation than this threshold. */
-    (float)  returnFromPenaltyMaxXOffset,            /**< When poses are generated after returning from a penalty, a random x offset is added to each pose. The absolute value of this offset is defined by this parameter. */
+    (float)  returnFromPenaltyMaxXOffset,            /**< Legacy parameter kept for configuration compatibility. HSL return poses are centered on the own penalty mark. */
     (bool)   demoUseCustomReturnFromPenaltyPoses,       /**< Flag to use the two following poses when localization is restarted after a penalty. This is only useful for certain demos on special fields. */
     (Pose2f) demoCustomReturnFromPenaltyPoseGoalie,     /**< Goalie pose is set to this pose after a penalty. */
     (Pose2f) demoCustomReturnFromPenaltyPoseFieldPlayer,/**< Field player pose is set to this pose after a penalty. */
@@ -108,7 +107,6 @@ private:
   float averageWeighting;                       /**< The average of the weightings of all samples in the sample set */
   unsigned lastAlternativePoseTimestamp;        /**< Last time an alternative pose was valid */
   bool validitiesHaveBeenUpdated;               /**< Flag that indicates that the validities of the samples have been changed this frame */
-  Pose2f lastGroundTruthRobotPose;              /**< Remember ground truth of last frame */
 
   int sumOfPerceivedLandmarks;                  /**< Statistics: Sum up number of all perceived landmarks */
   int sumOfPerceivedLines;                      /**< Statistics: Sum up number of all perceived lines */
@@ -143,13 +141,6 @@ private:
    * @return true, if a sample has been replaced
    */
   bool sensorResetting(const RobotPose& robotPose);
-
-  /** Special function for testing (currently only working in simulation).
-   *  Whenever the ground truth robot pose has changed to a certain extent, the samples are
-   *  reinitializes at the new pose. This allows easier testing by moving the robot around without waiting
-   *  for it to relocalize at the new pose.
-   */
-  void resetSamplesToGroundTruth();
 
   /** Some motions lead to low-quality percepts, as the camera pose cannot be computed precisely enough.
    *  This functions performs the necessary checks.

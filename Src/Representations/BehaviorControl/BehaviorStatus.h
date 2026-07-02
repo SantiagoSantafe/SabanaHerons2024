@@ -8,6 +8,7 @@
 
 #include "Tools/Communication/BHumanMessageParticle.h"
 #include "Math/Eigen.h"
+#include "Representations/BehaviorControl/RestartBallSearchContext.h"
 #include "Streaming/AutoStreamable.h"
 
 /**
@@ -17,9 +18,20 @@
 STREAMABLE(BehaviorStatus, COMMA public BHumanCompressedMessageParticle<BehaviorStatus>
 {,
   (bool)(false) calibrationFinished, /**< Set when the behavior is done with calibration and wants to transition to the unstiff state. */
+  (unsigned)(0) lastKickTimestamp, /**< Timestamp of the most recent completed kick by this robot. */
+  (bool)(false) lastKickWasOutsideCenterCircle, /**< Whether the last completed kick happened with the ball already outside the center circle. */
   (int)(-1) passTarget, /**< The number of the passed-to player. */
   (int)(-1) passOrigin, /**< The number of the player that passes to this one */
   (Vector2f)(Vector2f::Zero()) walkingTo, /**< The target position the robot is walking to (in robot relative coordinates). */
   (float) speed, /**< The absolute speed in mm/s. */
   (std::optional<Vector2f>) shootingTo, /**< The target position the robot is kicking the ball to (in robot relative coordinates). */
+  (RestartBallSearchType) restartMemoryType,
+  (int)(-1) restartMemoryRegionIndex,
+  (Vector2f)(Vector2f::Zero()) restartMemoryPositionOnField,
+  (unsigned)(0) restartMemoryTimestamp,
+  (int)(-1) restartMemorySourceRobot,
+  (bool)(false) restartMemoryValid,
+  (bool)(false) restartMemoryFrozen,
+  (bool)(false) restartMemoryFromLiveBall,
+  (bool)(false) restartMemoryFromDropInFallback,
 });

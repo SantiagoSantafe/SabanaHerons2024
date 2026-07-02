@@ -20,13 +20,23 @@ usage()
   echo "    -r <n> <ip>              copy to <ip> and set playernumber to <n> (one -r per robot)"
   echo "    -s <scenario>            set scenario"
   echo "    -t <team number>         set team number"
+  echo "    --rl-disable             disable embedded PPO for this deploy"
+  echo "    --rl-striker-base <players> comma-separated player list that uses striker_base PPO"
+  echo "    --rl-striker <players>   alias for --rl-striker-base"
+  echo "    --rl-defender <players>  comma-separated player list that uses defender PPO"
+  echo "    --rl-mixed-attack <players> comma-separated player list that uses mixed_attack/team striker PPO v4.2"
+  echo "    --rl-team-v42 <players>  alias for --rl-mixed-attack"
+  echo "    --rl-complete <players>  comma-separated player list that uses complete/merged brain v5"
+  echo "    --rl-merged <players>    alias for --rl-complete"
+  echo "    --rl-gk <on|off>         enable or disable the embedded goalkeeper RL policy (keeper robot only)"
+  echo "    --goalkeeper-dive <on|off> enable or disable goalkeeper diving in behaviorParameters.cfg"
   echo "    -u                       check for USB drive before starting (only when creating an image)"
   echo "    -v <volume percent>      set NAO's volume"
   echo "    -w <wireless profile>    set wireless profile"
   echo "  examples:"
   echo "    ./deploy Develop 192.168.5.14 -p 1"
   echo "    ./deploy Release -r 1 10.0.5.14 -r 3 10.0.0.2"
-  echo "    ./deploy Release -i -nc -v 50 -w SPL_A"
+  echo "    ./deploy Release -i -nc -v 50 -w HSL_A"
   exit 1
 }
 
@@ -41,6 +51,84 @@ settingsReplacements()
   [ ! -z $TEAM ] && SEDFLAGS="$SEDFLAGS -e 's/teamNumber =.*/teamNumber = $TEAM;/'"
   [ ! -z $MAGICNUMBER ] && SEDFLAGS="$SEDFLAGS -e 's/magicNumber =.*/magicNumber = $MAGICNUMBER;/'"
   echo "$SEDFLAGS"
+}
+
+cfgArrayFromPlayerList()
+{
+  local PLAYERS="$1"
+  if [ -z "$PLAYERS" ]; then
+    echo "[]"
+  else
+    echo "[$(sed 's/,/, /g' <<<"$PLAYERS")]"
+  fi
+}
+
+strategyBehaviorControlReplacements()
+{
+  if [ -z "$RL_DISABLE$RL_STRIKER_PLAYERS$RL_DEFENDER_PLAYERS$RL_TEAM_V42_PLAYERS$RL_MERGED_PLAYERS$RL_GK" ]; then
+    echo ""
+    return
+  fi
+
+  # Goalkeeper RL toggle (independent of the field-player embedded PPO).
+  local GK_ENABLE="false"
+  if [ "$RL_GK" = "on" ] || [ "$RL_GK" = "true" ]; then
+    GK_ENABLE="true"
+  fi
+
+  local ENABLE="true"
+  local STRIKERS="$(cfgArrayFromPlayerList "$RL_STRIKER_PLAYERS")"
+  local DEFENDERS="$(cfgArrayFromPlayerList "$RL_DEFENDER_PLAYERS")"
+  local TEAM_V42="$(cfgArrayFromPlayerList "$RL_TEAM_V42_PLAYERS")"
+  local MERGED="$(cfgArrayFromPlayerList "$RL_MERGED_PLAYERS")"
+  local TEAM_STRIKER_MODEL="\"\""
+  local MERGED_MODEL="\"\""
+  if [ "$TEAM_V42" != "[]" ] && [ "$STRIKERS" != "[]" ]; then
+    echo "mixing --rl-striker-base with --rl-mixed-attack is not supported in one deploy preset" >&2
+    exit 1
+  fi
+  if [ "$MERGED" != "[]" ] && { [ "$STRIKERS" != "[]" ] || [ "$DEFENDERS" != "[]" ] || [ "$TEAM_V42" != "[]" ]; }; then
+    echo "mixing --rl-complete with other RL modes is not supported (the complete brain controls all field players)" >&2
+    exit 1
+  fi
+  if [ "$TEAM_V42" != "[]" ]; then
+    STRIKERS="$TEAM_V42"
+    TEAM_STRIKER_MODEL="\"Config/NeuralNets/RLPolicy/ppo_team_hsl2026_v4_2.onnx\""
+  fi
+  if [ "$MERGED" != "[]" ]; then
+    MERGED_MODEL="\"Config/NeuralNets/RLPolicy/ppo_team_hsl2026_v5_merged.onnx\""
+  fi
+  if [ ! -z "$RL_DISABLE" ] || [ "$STRIKERS" = "[]" -a "$DEFENDERS" = "[]" -a "$MERGED" = "[]" ]; then
+    ENABLE="false"
+    STRIKERS="[]"
+    DEFENDERS="[]"
+    TEAM_STRIKER_MODEL="\"\""
+    MERGED_MODEL="\"\""
+  fi
+
+  echo "-e 's/^enableEmbeddedPPO =.*/enableEmbeddedPPO = $ENABLE;/' \
+-e 's/^embeddedPPORole =.*/embeddedPPORole = \"striker\";/' \
+-e 's/^embeddedPPODynamicPlayBall =.*/embeddedPPODynamicPlayBall = false;/' \
+-e 's/^embeddedPPOPlayers =.*/embeddedPPOPlayers = $STRIKERS;/' \
+-e 's/^embeddedPPODefenderPlayers =.*/embeddedPPODefenderPlayers = $DEFENDERS;/' \
+-e 's|^embeddedPPOTeamStrikerModelPath =.*|embeddedPPOTeamStrikerModelPath = $TEAM_STRIKER_MODEL;|' \
+-e 's|^embeddedPPOMergedTeamModelPath =.*|embeddedPPOMergedTeamModelPath = $MERGED_MODEL;|' \
+-e 's/^enableEmbeddedGK =.*/enableEmbeddedGK = $GK_ENABLE;/'"
+}
+
+behaviorParametersReplacements()
+{
+  if [ -z "$GOALKEEPER_DIVE" ]; then
+    echo ""
+    return
+  fi
+
+  local ENABLE="false"
+  if [ "$GOALKEEPER_DIVE" = "on" ] || [ "$GOALKEEPER_DIVE" = "true" ]; then
+    ENABLE="true"
+  fi
+
+  echo "-e 's/^keeperJumpingOn =.*/keeperJumpingOn = $ENABLE;/'"
 }
 
 copy()
@@ -147,6 +235,12 @@ PROFILE=
 MAGICNUMBER=
 REQUIREUSB=
 IMAGE=
+RL_DISABLE=
+RL_STRIKER_PLAYERS=
+RL_DEFENDER_PLAYERS=
+RL_TEAM_V42_PLAYERS=
+RL_MERGED_PLAYERS=
+RL_GK=
 if [ -z "$(ls 2>/dev/null ../../Config/Robots/*/network.cfg)" ]; then
   RESOLVE=cat
 else
@@ -227,6 +321,33 @@ while true; do
       ;;
     "-i" | "/i")
       IMAGE=1
+      ;;
+    "--rl-disable")
+      RL_DISABLE=1
+      ;;
+    "--rl-striker"|"--rl-striker-base")
+      shift
+      RL_STRIKER_PLAYERS=$1
+      ;;
+    "--rl-defender")
+      shift
+      RL_DEFENDER_PLAYERS=$1
+      ;;
+    "--rl-team-v42"|"--rl-mixed-attack")
+      shift
+      RL_TEAM_V42_PLAYERS=$1
+      ;;
+    "--rl-merged"|"--rl-complete")
+      shift
+      RL_MERGED_PLAYERS=$1
+      ;;
+    "--rl-gk")
+      shift
+      RL_GK=$1
+      ;;
+    "--goalkeeper-dive")
+      shift
+      GOALKEEPER_DIVE=$1
       ;;
     "Release")
       CONFIG="Release"
@@ -317,6 +438,49 @@ fi
 #key may only be accessed by the owner. Otherwise ssh will complain
 chmod 600 $keyFile
 
+cleanup()
+{
+  if [ -f /tmp/deploy_settings.cfg ]; then
+    mv /tmp/deploy_settings.cfg ../../Config/settings.cfg
+  fi
+  if [ -f /tmp/deploy_strategyBehaviorControl.cfg ] && [ ! -z "$SCENARIO" ]; then
+    mv /tmp/deploy_strategyBehaviorControl.cfg ../../Config/Scenarios/$SCENARIO/strategyBehaviorControl.cfg
+  fi
+  if [ -f /tmp/deploy_behaviorParameters.cfg ] && [ ! -z "$SCENARIO" ]; then
+    mv /tmp/deploy_behaviorParameters.cfg ../../Config/Scenarios/$SCENARIO/behaviorParameters.cfg
+  fi
+  trap - EXIT
+}
+
+trap cleanup EXIT
+
+SEDFLAGS="$(settingsReplacements)"
+STRATEGYFLAGS=
+BEHAVIORFLAGS=
+if [ ! -z "$SCENARIO" ]; then
+  STRATEGYFLAGS="$(strategyBehaviorControlReplacements)"
+  if [ ! -z "$STRATEGYFLAGS" ]; then
+    STRATEGY_FILE="../../Config/Scenarios/$SCENARIO/strategyBehaviorControl.cfg"
+    if [ ! -f "$STRATEGY_FILE" ]; then
+      echo "Scenario \"$SCENARIO\" does not provide strategyBehaviorControl.cfg" >&2
+      exit 1
+    fi
+    cp "$STRATEGY_FILE" /tmp/deploy_strategyBehaviorControl.cfg
+    bash -c "sed $STRATEGYFLAGS </tmp/deploy_strategyBehaviorControl.cfg >\"$STRATEGY_FILE\""
+  fi
+
+  BEHAVIORFLAGS="$(behaviorParametersReplacements)"
+  if [ ! -z "$BEHAVIORFLAGS" ]; then
+    BEHAVIOR_FILE="../../Config/Scenarios/$SCENARIO/behaviorParameters.cfg"
+    if [ ! -f "$BEHAVIOR_FILE" ]; then
+      echo "Scenario \"$SCENARIO\" does not provide behaviorParameters.cfg" >&2
+      exit 1
+    fi
+    cp "$BEHAVIOR_FILE" /tmp/deploy_behaviorParameters.cfg
+    bash -c "sed $BEHAVIORFLAGS </tmp/deploy_behaviorParameters.cfg >\"$BEHAVIOR_FILE\""
+  fi
+fi
+
 if [ ! -z $COMPILE ]; then
   if [ "`uname`" = "Darwin" ]; then
     # macOS
@@ -351,20 +515,14 @@ if [ ! -z $IMAGE ]; then # write an opn image
     DATE="$(date +"_%Y-%m-%d_%H-%M")"
   fi
 
-  SEDFLAGS="$(settingsReplacements)"
   if [ ! -z "$SEDFLAGS" ]; then
     cp ../../Config/settings.cfg /tmp/deploy_settings.cfg
-    trap "mv /tmp/deploy_settings.cfg ../../Config/settings.cfg" EXIT
     bash -c "sed $SEDFLAGS </tmp/deploy_settings.cfg >../../Config/settings.cfg"
   fi
 
   echo "y" | ../../Install/createHomeArchive $USBOPT -c $CONFIG -v $VOLUME $PROFILEOPT -H "$IMAGEPATH/home.tar.gz" \
   && ../../Install/createOPN -H "$IMAGEPATH/home.tar.gz" -o "$IMAGEPATH/bhuman$DATE.opn" $RESTARTOPT
 
-  if [ -f /tmp/deploy_settings.cfg ]; then
-    mv /tmp/deploy_settings.cfg ../../Config/settings.cfg
-    trap - EXIT
-  fi
 elif [ ! -z $REMOTE ]; then # deploy to a single robot
   if [ -z "$KEEPIP" ]; then
     rm -f ../../Config/Scenes/Includes/connect.con

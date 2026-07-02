@@ -4,8 +4,11 @@ if(BUILD_NAO)
   set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/../CMake/NaoToolchain.cmake")
 endif()
 
-if(NOT BUILD_NAO AND CMAKE_HOST_UNIX)
-  set(CMAKE_CXX_COMPILER clang++)
+if(NOT BUILD_NAO AND CMAKE_HOST_UNIX AND NOT CMAKE_CXX_COMPILER)
+  find_program(CLANGXX_EXECUTABLE NAMES clang++)
+  if(CLANGXX_EXECUTABLE)
+    set(CMAKE_CXX_COMPILER "${CLANGXX_EXECUTABLE}" CACHE FILEPATH "" FORCE)
+  endif()
 endif()
 
 project(B-Human LANGUAGES CXX)
@@ -73,7 +76,9 @@ if(MACOS)
   set(BUILD_NAO ON)
   set(CMAKE_XCODE_ATTRIBUTE_CC "${CMAKE_CURRENT_SOURCE_DIR}/../../Util/Buildchain/macOS/bin/compile")
 elseif(LINUX)
-  set(CMAKE_CXX_COMPILER_LAUNCHER env CCACHE_CPP2=yes CCACHE_SLOPPINESS=pch_defines,time_macros "ccache")
+  set(CCACHE_TEMPDIR "${CMAKE_BINARY_DIR}/.ccache-tmp")
+  file(MAKE_DIRECTORY "${CCACHE_TEMPDIR}")
+  set(CMAKE_CXX_COMPILER_LAUNCHER env CCACHE_CPP2=yes CCACHE_SLOPPINESS=pch_defines,time_macros CCACHE_TEMPDIR=${CCACHE_TEMPDIR} "ccache")
 endif()
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
@@ -120,9 +125,11 @@ else()
       -Wno-unknown-warning-option
       -Wno-sign-conversion
       -Wno-implicit-int-float-conversion
-      -Wunreachable-code
-      -Xclang
-      -fno-pch-timestamp)
+      -Wunreachable-code)
+  if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    add_compile_options(-Xclang
+        -fno-pch-timestamp)
+  endif()
   if(BUILD_DESKTOP)
     if(NOT ARM AND NOT ROSETTA)
       add_compile_options(-march=native)
@@ -206,6 +213,10 @@ if(BUILD_DESKTOP)
         set_target_properties(GTest::GTest PROPERTIES INTERFACE_LINK_OPTIONS -no-pie)
       endif()
     endif()
+  endif()
+
+  if(PYTHON_ONLY)
+    include("${SIMROBOT_PREFIX}/Make/CMake/Qt6.cmake")
   endif()
 
   if(MACOS)
@@ -370,7 +381,10 @@ if(BUILD_DESKTOP)
   if(ARM)
     target_include_directories(CompiledNN::ONNX SYSTEM INTERFACE "${BHUMAN_PREFIX}/Util/CompiledNN2ONNX/arm64/include")
 
-    add_library(asmjit INTERFACE)
+    add_library(asmjit INTERFACE
+        ../../Src/Representations/Infrastructure/ResourceStats.h
+        ../../Src/Modules/Infrastructure/ResourceMonitor/ResourceMonitor.cpp
+        ../../Src/Modules/Infrastructure/ResourceMonitor/ResourceMonitor.h)
     target_include_directories(asmjit SYSTEM INTERFACE "${BHUMAN_PREFIX}/Util/CompiledNN2ONNX/arm64/include")
   endif()
 endif()

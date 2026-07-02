@@ -9,11 +9,22 @@
 #pragma once
 
 #include "Behavior.h"
+#include "Libs/RL/PPOActionDecoder.h"
+#include "Libs/RL/PPOObservationEncoder.h"
+#include "Libs/RL/PPOPolicyModel.h"
+#include "Libs/RL/PPOSkillGate.h"
+#include "Libs/RL/GKActionDecoder.h"
+#include "Libs/RL/GKObservationEncoder.h"
+#include "Libs/RL/GKPolicyModel.h"
+#include "Libs/RL/GKSkillGate.h"
+#include "Representations/BehaviorControl/ExpectedGoals.h"
 #include "Representations/BehaviorControl/FieldBall.h"
+#include "Representations/BehaviorControl/RestartBallSearchContext.h"
 #include "Representations/BehaviorControl/SkillRequest.h"
 #include "Representations/BehaviorControl/StrategyStatus.h"
 #include "Representations/Communication/ReceivedTeamMessages.h"
 #include "Representations/Communication/SentTeamMessage.h"
+#include "Representations/Communication/TeamData.h"
 #include "Representations/Configuration/BallSpecification.h"
 #include "Representations/Configuration/FieldDimensions.h"
 #include "Representations/Configuration/SetupPoses.h"
@@ -21,20 +32,27 @@
 #include "Representations/Infrastructure/GameState.h"
 #include "Representations/Modeling/BallDropInModel.h"
 #include "Representations/Modeling/BallModel.h"
+#include "Representations/Modeling/ObstacleModel.h"
 #include "Representations/Modeling/RobotPose.h"
 #include "Representations/Modeling/TeammatesBallModel.h"
 #include "Representations/MotionControl/MotionInfo.h"
+#include "Representations/Perception/BallPercepts/BallPercept.h"
 #include "Representations/Sensing/FallDownState.h"
 #include "Representations/Sensing/GroundContactState.h"
 #include "Tools/BehaviorControl/Strategy/Agent.h"
 #include "Framework/Module.h"
+#include <map>
+#include <string>
+#include <utility>
 #include <vector>
 
 MODULE(StrategyBehaviorControl,
 {,
   REQUIRES(BallDropInModel),
   REQUIRES(BallModel),
+  REQUIRES(BallPercept),
   REQUIRES(BallSpecification),
+  REQUIRES(ExpectedGoals),
   REQUIRES(ExtendedGameState),
   REQUIRES(FallDownState),
   REQUIRES(FieldBall),
@@ -43,10 +61,13 @@ MODULE(StrategyBehaviorControl,
   REQUIRES(GameState),
   REQUIRES(GroundContactState),
   REQUIRES(MotionInfo),
+  REQUIRES(ObstacleModel),
   REQUIRES(ReceivedTeamMessages),
+  REQUIRES(RestartBallSearchContext),
   REQUIRES(RobotPose),
   REQUIRES(SentTeamMessage),
   REQUIRES(SetupPoses),
+  REQUIRES(TeamData),
   REQUIRES(TeammatesBallModel),
   PROVIDES(SkillRequest),
   REQUIRES(SkillRequest),
@@ -54,6 +75,22 @@ MODULE(StrategyBehaviorControl,
   LOADS_PARAMETERS(
   {,
     (Strategy::Type) strategy, /**< The strategy to play. */
+    (bool)(false) enableEmbeddedPPO, /**< Enable the embedded PPO policy override. */
+    (std::string)("Config/NeuralNets/RLPolicy/ppo_striker_hsl2026.onnx") embeddedPPOModelPath, /**< PPO model file, relative to the repo root unless absolute. */
+    (std::string)("striker") embeddedPPORole, /**< PPO role decoder: striker_base, baseline_attack, mixed_attack, or legacy aliases. */
+    (std::string)("Config/NeuralNets/RLPolicy/ppo_striker_hsl2026.onnx") embeddedPPOStrikerModelPath, /**< Striker PPO model for the dynamic playBall robot. */
+    (std::string)("Config/NeuralNets/RLPolicy/ppo_defender_hsl2026_param_repair.onnx") embeddedPPODefenderModelPath, /**< Defender PPO model for configured defender players. */
+    (std::string)("Config/NeuralNets/RLPolicy/ppo_team_hsl2026_v4_2.onnx") embeddedPPOTeamStrikerModelPath, /**< 47-dim team striker model (v4.2). Takes priority over embeddedPPOStrikerModelPath when non-empty. */
+    (std::string)("") embeddedPPOMergedTeamModelPath, /**< 47-dim merged striker+defense brain (v5). When non-empty takes priority over all other roles. */
+    (int)(-1) embeddedPPOTeamNumber, /**< Team filter for PPO. -1 means own team. */
+    (bool)(true) embeddedPPODynamicPlayBall, /**< If true, PPO follows the dynamically assigned playBall robot. */
+    (std::vector<int>) embeddedPPOPlayers, /**< If non-empty, only these player numbers use PPO. */
+    (std::vector<int>) embeddedPPODefenderPlayers, /**< Player numbers that use the defender PPO when not assigned playBall. */
+    (int)(0) embeddedPPOStandWatchdogMs, /**< Disable PPO or force walk if PPO stand dominates this time window. 0 disables. */
+    (int)(3000) embeddedPPOStandWatchdogCooldownMs, /**< Time to keep PPO disabled after the stand watchdog fires. */
+    (bool)(false) embeddedPPOStandWatchdogForceWalk, /**< If true, force walk instead of falling back to B-Human when the watchdog fires. */
+    (bool)(false) enableEmbeddedGK, /**< Enable the embedded goalkeeper RL policy (runs ONLY on the keeper robot). */
+    (std::string)("Config/NeuralNets/RLPolicy/ppo_goalkeeper_hsl2026_gk_closedloop_elite.onnx") embeddedGKModelPath, /**< GK ONNX file, relative to the repo root unless absolute. Head-free closed-loop policy. */
   }),
 });
 
@@ -70,6 +107,24 @@ public:
   static std::vector<ModuleBase::Info> getExtModuleInfo();
 
 private:
+  enum class RLRuntimeMode
+  {
+    bhuman,
+    externalOverride,
+    embeddedWaiting,
+    embeddedFallback,
+    embeddedActive,
+  };
+
+  enum class EmbeddedPPORole
+  {
+    none,
+    striker,          // legacy 26-dim striker (ppo_striker_hsl2026.onnx)
+    defender,         // legacy 26-dim defender
+    teamStriker,      // 47-dim striker v4.2 (ppo_team_hsl2026_v4_2.onnx)
+    mergedTeam,       // 47-dim merged brain v5 (striker+open_support+off_ball_support)
+  };
+
   /**
    * Updates the skill request.
    * @param skillRequest The provided skill request.
@@ -80,7 +135,7 @@ private:
    * Updates the strategy status.
    * @param strategyStatus The provided strategy status.
    */
-  void update(StrategyStatus& strategyStatus) override { strategyStatus = theStrategyStatus; }
+  void update(StrategyStatus& strategyStatus) override;
 
   /**
    * Updates the list of agents to represent the most recent data.
@@ -107,7 +162,99 @@ private:
    */
   void updateCurrentPosition(Agent& agent);
 
+  bool usesEmbeddedPPO(const GameState& gameState) const;
+  std::string embeddedPPOStatusReason(const GameState& gameState) const;
+  EmbeddedPPORole selectedEmbeddedPPORole(const GameState& gameState) const;
+  std::string configuredEmbeddedPPOModelPath(EmbeddedPPORole role) const;
+  bool updateEmbeddedPPO(SkillRequest& skillRequest);
+  bool ensureEmbeddedPPOLoaded(EmbeddedPPORole role);
+  int selectDefenderPPOPassTarget() const;
+  bool shouldDefenderPPOEngageBall(const RL::PPOGateObservation& rawObservation) const;
+  void logRLModeIfChanged(RLRuntimeMode mode, const std::string& reason);
+  void logEmbeddedPPODecisionIfChanged(
+    int skillIndex,
+    const RL::PPOGateDecision& gateDecision,
+    const RL::PPOGateObservation& rawObservation,
+    const std::array<float, RL::ppoSkillCount>& maskedLogits,
+    const std::array<float, RL::ppoParamCount>& paramMean,
+    const SkillRequest& skillRequest);
+  void resetEmbeddedPPO();
+
+  // Embedded goalkeeper RL policy (separate 64-dim/12-skill net; runs only on the keeper).
+  bool usesEmbeddedGK(const GameState& gameState) const;
+  std::string configuredEmbeddedGKModelPath() const;
+  bool updateEmbeddedGK(SkillRequest& skillRequest);
+  bool ensureEmbeddedGKLoaded();
+  int chooseGKPassTarget() const;
+
+  // Team striker (v4.2) helpers
+  RL::PPOTeamContext buildTeamContext(const RL::PPOGateDecision& gateDecision, bool isStriker) const;
+  bool computeStrikerPassArmed(const RL::PPOGateObservation& rawObs, int& outPassTarget) const;
+  std::array<bool, RL::ppoSkillCount> buildTeamStrikerMask(const RL::PPOGateDecision& gateDecision, bool passArmed) const;
+
+  // Merged brain (v5) helpers — role coordinator + role-conditioned decode
+  int assignTeamRoles(const RL::PPOGateObservation& rawObs);
+  std::pair<float, float> computeMergedOpenLaneTarget(
+      float ballX, float ballY, float strikerX, float strikerY) const;
+  std::pair<float, float> computeMergedTriangleTarget(
+      float ballX, float ballY, float strikerX, float strikerY,
+      float openSupportX, float openSupportY) const;
+  std::array<bool, RL::ppoSkillCount> buildMergedTeamMask(
+      const RL::PPOGateDecision& gateDecision,
+      const std::array<float, RL::ppoObsSize47>& obs47) const;
+
   Behavior theBehavior; /**< The instance of the behavior. */
   std::vector<Agent> agents; /**< The list of active agents. */
   StrategyStatus theStrategyStatus; /**< The strategy status which is provided later. */
+  RL::PPOSkillGate ppoSkillGate;      /**< Gate for legacy 26-dim models (thresholds 0.6/0.45). */
+  RL::PPOSkillGate ppoSkillGateV47;   /**< Gate for 47-dim team models (thresholds 0.30/0.20). */
+  RL::PPOObservationEncoder ppoObservationEncoder;
+  RL::PPOPolicyModel strikerPPOPolicyModel;
+  RL::PPOPolicyModel defenderPPOPolicyModel;
+  RL::PPOPolicyModel teamStrikerPPOPolicyModel;  /**< 47-dim team striker model (v4.2). */
+  RL::PPOPolicyModel mergedTeamPPOPolicyModel;   /**< 47-dim merged brain v5. */
+  RL::PPOActionDecoder ppoActionDecoder;
+  RLGK::GKPolicyModel gkPolicyModel;
+  RLGK::GKObservationEncoder gkObservationEncoder;
+  RLGK::GKSkillGate gkSkillGate;
+  RLGK::GKActionDecoder gkActionDecoder;
+  bool gkLoadAttempted = false;
+  bool gkLoadErrorReported = false;
+  bool gkInferErrorReported = false;
+  std::string gkRequestedModelPath;
+  bool strikerPPOLoadAttempted = false;
+  bool defenderPPOLoadAttempted = false;
+  bool teamStrikerPPOLoadAttempted = false;
+  bool mergedTeamPPOLoadAttempted = false;
+  bool strikerPPOLoadErrorReported = false;
+  bool defenderPPOLoadErrorReported = false;
+  bool teamStrikerPPOLoadErrorReported = false;
+  bool mergedTeamPPOLoadErrorReported = false;
+  bool ppoInferErrorReported = false;
+  std::string strikerPPORequestedModelPath;
+  std::string defenderPPORequestedModelPath;
+  std::string teamStrikerPPORequestedModelPath;
+  std::string mergedTeamPPORequestedModelPath;
+  // Role coordinator state (merged brain v5)
+  std::map<int, int> teamRoleMap;                /**< playerNum → 0=striker, 1=open_support, 2=off_ball_support */
+  std::map<int, int> teamRoleCandidateStreak;    /**< playerNum → consecutive frames as candidate striker */
+  // EMA-smoothed coordination targets (merged brain v5)
+  float emaOpenLaneX = 0.f, emaOpenLaneY = 0.f;
+  bool emaOpenLaneInited = false;
+  float emaTriangleX = 0.f, emaTriangleY = 0.f;
+  bool emaTriangleInited = false;
+  float triangleForcedSide = 0.f;
+  bool triangleForcedSideSet = false;
+  unsigned ppoStandWatchdogWindowStarted = 0;
+  int ppoStandWatchdogStandFrames = 0;
+  int ppoStandWatchdogTotalFrames = 0;
+  unsigned ppoStandWatchdogCooldownStarted = 0;
+  bool ppoStandWatchdogCooldownActive = false;
+  bool hasLoggedRLRuntimeMode = false;
+  RLRuntimeMode lastLoggedRLRuntimeMode = RLRuntimeMode::bhuman;
+  std::string lastLoggedRLRuntimeReason;
+  int lastLoggedEmbeddedPPOSkillIndex = -1;
+  bool lastLoggedEmbeddedPPOShootArmed = false;
+  bool lastLoggedEmbeddedPPODribbleArmed = false;
+  unsigned lastLoggedEmbeddedPPOTimestamp = 0;
 };

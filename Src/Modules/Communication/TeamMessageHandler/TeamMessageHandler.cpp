@@ -157,10 +157,23 @@ bool TeamMessageHandler::writeMessage(BHumanMessageOutputGenerator& outputGenera
 
     COUNT(RobotStatus.isUpright);
     // COUNT(BehaviorStatus.calibrationFinished);
+    COUNT(BehaviorStatus.lastKickTimestamp);
+    COUNT(BehaviorStatus.lastKickWasOutsideCenterCircle);
     COUNT(BehaviorStatus.passTarget);
     statistics.count("BehaviorStatus.shootingTo",
                      globalBearingsChanged(theRobotPose, theBehaviorStatus.shootingTo,
                                            lastSent.theRobotPose, lastSent.theBehaviorStatus.shootingTo));
+    COUNT(BehaviorStatus.restartMemoryType);
+    COUNT(BehaviorStatus.restartMemoryRegionIndex);
+    COUNT(BehaviorStatus.restartMemoryTimestamp);
+    COUNT(BehaviorStatus.restartMemorySourceRobot);
+    COUNT(BehaviorStatus.restartMemoryValid);
+    COUNT(BehaviorStatus.restartMemoryFrozen);
+    COUNT(BehaviorStatus.restartMemoryFromLiveBall);
+    COUNT(BehaviorStatus.restartMemoryFromDropInFallback);
+    statistics.count("BehaviorStatus.restartMemoryPositionOnField",
+                     globalBearingsChanged(theRobotPose, theBehaviorStatus.restartMemoryPositionOnField,
+                                           lastSent.theRobotPose, lastSent.theBehaviorStatus.restartMemoryPositionOnField));
     COUNT(StrategyStatus.proposedTactic);
     //COUNT(StrategyStatus.acceptedTactic);
     COUNT(StrategyStatus.proposedMirror);
@@ -361,9 +374,20 @@ bool TeamMessageHandler::whistleDetected() const
 bool TeamMessageHandler::behaviorStatusChanged() const
 {
   return (// theBehaviorStatus.calibrationFinished != lastSent.theBehaviorStatus.calibrationFinished || // not used
+          theBehaviorStatus.lastKickTimestamp != lastSent.theBehaviorStatus.lastKickTimestamp ||
+          theBehaviorStatus.lastKickWasOutsideCenterCircle != lastSent.theBehaviorStatus.lastKickWasOutsideCenterCircle ||
           theBehaviorStatus.passTarget != lastSent.theBehaviorStatus.passTarget ||
+          theBehaviorStatus.restartMemoryType != lastSent.theBehaviorStatus.restartMemoryType ||
+          theBehaviorStatus.restartMemoryRegionIndex != lastSent.theBehaviorStatus.restartMemoryRegionIndex ||
+          theBehaviorStatus.restartMemoryTimestamp != lastSent.theBehaviorStatus.restartMemoryTimestamp ||
+          theBehaviorStatus.restartMemorySourceRobot != lastSent.theBehaviorStatus.restartMemorySourceRobot ||
+          theBehaviorStatus.restartMemoryValid != lastSent.theBehaviorStatus.restartMemoryValid ||
+          theBehaviorStatus.restartMemoryFrozen != lastSent.theBehaviorStatus.restartMemoryFrozen ||
+          theBehaviorStatus.restartMemoryFromLiveBall != lastSent.theBehaviorStatus.restartMemoryFromLiveBall ||
+          theBehaviorStatus.restartMemoryFromDropInFallback != lastSent.theBehaviorStatus.restartMemoryFromDropInFallback ||
           // theBehaviorStatus.walkingTo != lastSent.behaviorStatus.walkingTo || // included in robotPoseChanged
           // theBehaviorStatus.speed != lastSent.behaviorStatus.speed || // included in robotPoseChanged
+          globalBearingsChanged(theRobotPose, theBehaviorStatus.restartMemoryPositionOnField, lastSent.theRobotPose, lastSent.theBehaviorStatus.restartMemoryPositionOnField) ||
           globalBearingsChanged(theRobotPose, theBehaviorStatus.shootingTo, lastSent.theRobotPose, lastSent.theBehaviorStatus.shootingTo));
 }
 
